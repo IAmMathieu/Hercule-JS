@@ -16,3 +16,13 @@ const friends = ['Jupiter', 'Junon', 'Alcmène', 'Déjanire'];
 base.printFriends(friends);
 
 base.setBestFriend(friends[0]);
+
+function addTitle() {
+    let banner = document.querySelector('#header-banner');
+    let title = document.createElement('h1');
+    title.classList.add('banner__title');
+    title.textContent = 'Vous consultez le profil de Hercule';
+    banner.append(title);
+}
+
+addTitle();
