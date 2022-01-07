@@ -34,3 +34,16 @@ function workList() {
 }
 
 workList();
+
+function isAvailable() {
+    const currentHour = base.getHour();
+    const availableElm = document.querySelector('#availability');
+    if (currentHour >= 8 && currentHour <= 20) {
+        availableElm.textContent = 'Disponible';
+    } else {
+        availableElm.textContent = 'Non Disponible';
+        availableElm.classList.add('off');
+    }
+}
+
+isAvailable();
