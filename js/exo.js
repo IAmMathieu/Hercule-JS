@@ -26,3 +26,11 @@ function addTitle() {
 }
 
 addTitle();
+
+function workList() {
+    for (workIndex = 0; workIndex < 12; workIndex++) {
+        base.displayWork(workIndex);
+    }
+}
+
+workList();
