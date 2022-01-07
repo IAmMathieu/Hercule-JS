@@ -80,3 +80,18 @@ function submitMessage() {
 }
 
 submitMessage();
+
+function voteCount(candidat) {
+    const candidatVote = (candidat / 173) * 100;
+    return candidatVote;
+}
+
+const voteHerc = Math.round(voteCount(base.vote.hercule));
+const voteCesar = Math.round(voteCount(base.vote.cesar));
+
+const hercElm = document.querySelector('#trends-hercule .people__popularity');
+console.log(hercElm);
+hercElm.textContent = `${voteHerc}%`;
+
+const cesarElm = document.querySelector('#trends-cesar .people__popularity');
+cesarElm.textContent = `${voteCesar}%`;
