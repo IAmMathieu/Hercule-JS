@@ -47,3 +47,15 @@ function isAvailable() {
 }
 
 isAvailable();
+
+function makePseudo(prenom, dep) {
+    return `${prenom}-du-${dep}`;
+}
+const hercPseudo = makePseudo('Hercule', 75);
+
+function getPseudo(pseudo) {
+    const pseudoElm = document.querySelector('#profil-name');
+    pseudoElm.textContent = hercPseudo;
+}
+
+getPseudo(hercPseudo);
