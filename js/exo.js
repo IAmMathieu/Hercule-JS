@@ -1,97 +1,87 @@
 console.log('test 1...2...1...2');
 
-const hercule = {
-    name: 'Hercule',
-    job: 'Demi-dieu',
-    age: 35,
-    departement: 75,
-    arm: 60.5,
-    inRelationship: true,
+const profil = {
+    hercule: {
+        name: 'Hercule',
+        job: 'Demi-dieu',
+        age: 35,
+        departement: 75,
+        arm: 60.5,
+        inRelationship: true,
+    },
+    friends: ['Jupiter', 'Junon', 'Alcmène', 'Déjanire'],
+    addTitle() {
+        let banner = document.querySelector('#header-banner');
+        let title = document.createElement('h1');
+        title.classList.add('banner__title');
+        title.textContent = 'Vous consultez le profil de Hercule';
+        banner.append(title);
+    },
+    workList() {
+        for (workIndex = 0; workIndex < 12; workIndex++) {
+            base.displayWork(workIndex);
+        }
+    },
+    isAvailable() {
+        const currentHour = base.getHour();
+        const availableElm = document.querySelector('#availability');
+        if (currentHour >= 8 && currentHour <= 20) {
+            availableElm.textContent = 'Disponible';
+        } else {
+            availableElm.textContent = 'Non Disponible';
+            availableElm.classList.add('off');
+        }
+    },
+    makePseudo(prenom, dep) {
+        return `${prenom}-du-${dep}`;
+    },
+    getPseudo(pseudo) {
+        const pseudoElm = document.querySelector('#profil-name');
+        pseudoElm.textContent = pseudo;
+    },
+    menuToggler() {
+        const menuElm = document.querySelector('#menu-toggler');
+
+        menuElm.addEventListener('click', () => {
+            const headBanElm = document.querySelector('#header-banner');
+            headBanElm.classList.toggle('banner--open');
+        });
+    },
+    submitMessage() {
+        const contactElm = document.querySelector('#contact');
+        contactElm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Hercule ne souhaite pas être dérangé');
+        });
+    },
+    voteCount() {
+        for (const key in base.vote) {
+            if (key === 'hercule') {
+                const candidatVote = Math.round((base.vote.hercule / 173) * 100);
+                const candidatElm = document.querySelector(`#trends-${key} .people__popularity`);
+                candidatElm.textContent = `${candidatVote}%`;
+            } else {
+                const candidatVote = Math.round((base.vote.cesar / 173) * 100);
+                const candidatElm = document.querySelector(`#trends-${key} .people__popularity`);
+                candidatElm.textContent = `${candidatVote}%`;
+            }
+        }
+    },
+    init: function () {
+        profil.addTitle();
+        profil.workList();
+        profil.isAvailable();
+        profil.voteCount();
+        profil.menuToggler();
+        profil.submitMessage();
+        profil.getPseudo(profil.makePseudo(profil.hercule.name, profil.hercule.age));
+    },
 };
 
-base.fillProfil(hercule);
+base.fillProfil(profil.hercule);
 
-const friends = ['Jupiter', 'Junon', 'Alcmène', 'Déjanire'];
+base.printFriends(profil.friends);
 
-base.printFriends(friends);
+base.setBestFriend(profil.friends[0]);
 
-base.setBestFriend(friends[0]);
-
-function addTitle() {
-    let banner = document.querySelector('#header-banner');
-    let title = document.createElement('h1');
-    title.classList.add('banner__title');
-    title.textContent = 'Vous consultez le profil de Hercule';
-    banner.append(title);
-}
-
-addTitle();
-
-function workList() {
-    for (workIndex = 0; workIndex < 12; workIndex++) {
-        base.displayWork(workIndex);
-    }
-}
-
-workList();
-
-function isAvailable() {
-    const currentHour = base.getHour();
-    const availableElm = document.querySelector('#availability');
-    if (currentHour >= 8 && currentHour <= 20) {
-        availableElm.textContent = 'Disponible';
-    } else {
-        availableElm.textContent = 'Non Disponible';
-        availableElm.classList.add('off');
-    }
-}
-
-isAvailable();
-
-function makePseudo(prenom, dep) {
-    return `${prenom}-du-${dep}`;
-}
-const hercPseudo = makePseudo('Hercule', 75);
-
-function getPseudo(pseudo) {
-    const pseudoElm = document.querySelector('#profil-name');
-    pseudoElm.textContent = hercPseudo;
-}
-
-getPseudo(hercPseudo);
-
-function menuToggler() {
-    const menuElm = document.querySelector('#menu-toggler');
-
-    menuElm.addEventListener('click', () => {
-        const headBanElm = document.querySelector('#header-banner');
-        headBanElm.classList.toggle('banner--open');
-    });
-}
-
-menuToggler();
-
-function submitMessage() {
-    const contactElm = document.querySelector('#contact');
-    contactElm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Hercule ne souhaite pas être dérangé');
-    });
-}
-
-submitMessage();
-
-function voteCount(candidat) {
-    const candidatVote = (candidat / 173) * 100;
-    return candidatVote;
-}
-
-const voteHerc = Math.round(voteCount(base.vote.hercule));
-const voteCesar = Math.round(voteCount(base.vote.cesar));
-
-const hercElm = document.querySelector('#trends-hercule .people__popularity');
-console.log(hercElm);
-hercElm.textContent = `${voteHerc}%`;
-
-const cesarElm = document.querySelector('#trends-cesar .people__popularity');
-cesarElm.textContent = `${voteCesar}%`;
+document.addEventListener('DOMContentLoaded', profil.init);
