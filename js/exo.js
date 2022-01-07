@@ -70,3 +70,13 @@ function menuToggler() {
 }
 
 menuToggler();
+
+function submitMessage() {
+    const contactElm = document.querySelector('#contact');
+    contactElm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Hercule ne souhaite pas être dérangé');
+    });
+}
+
+submitMessage();
