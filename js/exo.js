@@ -56,15 +56,11 @@ const profil = {
     },
     voteCount() {
         for (const key in base.vote) {
-            if (key === 'hercule') {
-                const candidatVote = Math.round((base.vote.hercule / 173) * 100);
-                const candidatElm = document.querySelector(`#trends-${key} .people__popularity`);
-                candidatElm.textContent = `${candidatVote}%`;
-            } else {
-                const candidatVote = Math.round((base.vote.cesar / 173) * 100);
-                const candidatElm = document.querySelector(`#trends-${key} .people__popularity`);
-                candidatElm.textContent = `${candidatVote}%`;
-            }
+            const candidatVote = Math.round((base.vote[key] / 173) * 100);
+            const candidatElm = document.querySelector(`#trends-${key} .people__popularity`);
+            const barElm = document.querySelector(`#trends-${key} .people__bar`);
+            barElm.style.width = `${candidatVote}%`;
+            candidatElm.textContent = `${candidatVote}%`;
         }
     },
     addActivities() {
