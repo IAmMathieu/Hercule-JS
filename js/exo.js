@@ -80,6 +80,9 @@ const profil = {
         activitiesElm.classList.remove('hidden');
     },
     init: function () {
+        base.fillProfil(profil.hercule);
+        base.printFriends(profil.friends);
+        base.setBestFriend(profil.friends[0]);
         profil.addTitle();
         profil.workList();
         profil.isAvailable();
@@ -90,11 +93,5 @@ const profil = {
         profil.addActivities();
     },
 };
-
-base.fillProfil(profil.hercule);
-
-base.printFriends(profil.friends);
-
-base.setBestFriend(profil.friends[0]);
 
 document.addEventListener('DOMContentLoaded', profil.init);
