@@ -67,6 +67,18 @@ const profil = {
             }
         }
     },
+    addActivities() {
+        const activitiesListElm = document.querySelector('#activities .tasks');
+        for (const activity of base.activities) {
+            if (activity.author === 'Hercule' && activity.finished === true) {
+                const titleElm = document.createElement('li');
+                titleElm.textContent = activity.title;
+                activitiesListElm.append(titleElm);
+            }
+        }
+        const activitiesElm = document.querySelector('#activities');
+        activitiesElm.classList.remove('hidden');
+    },
     init: function () {
         profil.addTitle();
         profil.workList();
@@ -75,6 +87,7 @@ const profil = {
         profil.menuToggler();
         profil.submitMessage();
         profil.getPseudo(profil.makePseudo(profil.hercule.name, profil.hercule.age));
+        profil.addActivities();
     },
 };
 
