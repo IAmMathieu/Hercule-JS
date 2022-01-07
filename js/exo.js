@@ -59,3 +59,14 @@ function getPseudo(pseudo) {
 }
 
 getPseudo(hercPseudo);
+
+function menuToggler() {
+    const menuElm = document.querySelector('#menu-toggler');
+
+    menuElm.addEventListener('click', () => {
+        const headBanElm = document.querySelector('#header-banner');
+        headBanElm.classList.toggle('banner--open');
+    });
+}
+
+menuToggler();
